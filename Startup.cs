@@ -9,15 +9,23 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using TarefasBackEnd.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using TarefaBackEnd.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Configuration;
 
 namespace TarefasBackEnd
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; set; }
+
+        public Startup (IConfiguration configuration) { // When my startup class created i will access this configurations
+            Configuration = configuration;
+        }
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
@@ -41,7 +49,12 @@ namespace TarefasBackEnd
                 };
             });
 
-            services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("BDTarefas")); //setting de BD im memory (flash memory)
+            //services.AddDbContext<DataContext>(options => 
+              //  options.UseInMemoryDatabase("BDTarefas")); //setting de BD im memory (flash memory)
+
+            services.AddDbContext<DataContext>(options => //psotgree no Heroku
+                options.UseNpgsql(Configuration.GetConnectionString("Heroku")));
+
 // AddScope
 // AddTransient  - Create e Run that a any requeest, using persist all time requests -- For transaction
 // AddSingleton - Create a one instance for class when start application - one instance for application -- For application

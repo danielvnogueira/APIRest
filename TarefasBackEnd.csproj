@@ -7,8 +7,13 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNEtCore.Authentication" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNEtCore.Authentication.JwtBearer" Version="3.1.9" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.0-rc2" />
   </ItemGroup>
 
 </Project>
