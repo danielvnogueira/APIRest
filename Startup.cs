@@ -50,7 +50,7 @@ namespace TarefasBackEnd
             });
 
             //services.AddDbContext<DataContext>(options => 
-              //  options.UseInMemoryDatabase("BDTarefas")); //setting de BD im memory (flash memory)
+             //   options.UseInMemoryDatabase("BDTarefas")); //setting de BD im memory (flash memory)
 
             services.AddDbContext<DataContext>(options => //psotgree no Heroku
                 options.UseNpgsql(Configuration.GetConnectionString("Heroku")));
@@ -60,6 +60,7 @@ namespace TarefasBackEnd
 // AddSingleton - Create a one instance for class when start application - one instance for application -- For application
             services.AddTransient<ITarefaRepository, TarefaRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,6 +75,7 @@ namespace TarefasBackEnd
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
             
