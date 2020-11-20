@@ -6,13 +6,13 @@ using TarefasBackEnd.Repositories;
 
 namespace TarefasBackEnd.Controllers
 {
-    [Authorize] // Auth with my jwt token Bear -- My class need to be auth
+    //[Authorize] // Auth with my jwt token Bear -- My class need to be auth
     [ApiController]    
     [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
         [HttpGet]
-        // [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
+        //[AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
         public IActionResult Get([FromServices]ITarefaRepository repository)
         {
             var id = new Guid(User.Identity.Name); // Return only data of user 
