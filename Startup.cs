@@ -71,12 +71,12 @@ namespace TarefasBackEnd
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            
 
             //app.UseAuthentication();
             //app.UseAuthorization();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-
+            app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
             
         }
