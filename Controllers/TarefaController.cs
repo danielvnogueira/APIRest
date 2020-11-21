@@ -8,7 +8,7 @@ namespace TarefasBackEnd.Controllers
 {
     //[Authorize] // Auth with my jwt token Bear -- My class need to be auth
     [ApiController]    
-    [Route("tarefa")]
+    [Route("tarefa")]  //http://localhost:5000/tarefa
     public class TarefaController : ControllerBase
     {
         [HttpGet]
@@ -35,8 +35,8 @@ namespace TarefasBackEnd.Controllers
 
         }
 
-        [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
         [HttpPut("{id}")]
+        [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
         public IActionResult Update(string id, [FromBody]Tarefa model, [FromServices]ITarefaRepository repository)
         {
             if(!ModelState.IsValid) //Validation the task requirements
