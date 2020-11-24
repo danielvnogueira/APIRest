@@ -6,13 +6,13 @@ using TarefasBackEnd.Repositories;
 
 namespace TarefasBackEnd.Controllers
 {
-    //[Authorize] // Auth with my jwt token Bear -- My class need to be auth
+    [Authorize] // Auth with my jwt token Bear -- My class need to be auth
     [ApiController]    
-    [Route("tarefa")]  //http://localhost:5000/tarefa
+    [Route("tarefa")]
     public class TarefaController : ControllerBase
     {
         [HttpGet]
-        [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
+        //[AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
         public IActionResult Get([FromServices]ITarefaRepository repository)
         {
             var id = new Guid(User.Identity.Name); // Return only data of user 
@@ -21,7 +21,6 @@ namespace TarefasBackEnd.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
         public IActionResult Create([FromBody]Tarefa model, [FromServices]ITarefaRepository repository)
         {
             if(!ModelState.IsValid) //Validation the task requirements
@@ -35,8 +34,8 @@ namespace TarefasBackEnd.Controllers
 
         }
 
+
         [HttpPut("{id}")]
-        [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get
         public IActionResult Update(string id, [FromBody]Tarefa model, [FromServices]ITarefaRepository repository)
         {
             if(!ModelState.IsValid) //Validation the task requirements
@@ -49,7 +48,7 @@ namespace TarefasBackEnd.Controllers
         }
 
 
-        [AllowAnonymous] // I commented this permisses to  anonymous users use the Method Get        
+        
         [HttpDelete("{id}")]
         public IActionResult Delete(string id, [FromServices]ITarefaRepository repository)
         {

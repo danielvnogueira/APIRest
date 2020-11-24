@@ -60,7 +60,6 @@ namespace TarefasBackEnd
 // AddSingleton - Create a one instance for class when start application - one instance for application -- For application
             services.AddTransient<ITarefaRepository, TarefaRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
-            services.AddMvc();
             services.AddCors();
         }
 
@@ -74,8 +73,8 @@ namespace TarefasBackEnd
 
             app.UseRouting();
 
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints => endpoints.MapControllers());
